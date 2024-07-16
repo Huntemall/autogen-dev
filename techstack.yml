@@ -1,0 +1,791 @@
+repo_name: Huntemall/autogen-dev
+report_id: 43547756f5f0dd710ed39a5f832664c4
+version: 0.1
+repo_type: Public
+timestamp: '2024-07-16T09:55:58+00:00'
+requested_by: LeoLjl
+provider: github
+branch: dev
+detected_tools_count: 58
+tools:
+- name: CSS 3
+  description: The latest evolution of the Cascading Style Sheets language
+  website_url: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/6727/css.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev
+  detection_source: Repo Metadata
+- name: JavaScript
+  description: Lightweight, interpreted, object-oriented language with first-class
+    functions
+  website_url: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source_url: https://github.com/Huntemall/autogen-dev
+  detection_source: Repo Metadata
+- name: Python
+  description: A clear and powerful object-oriented programming language, comparable
+    to Perl, Ruby, Scheme, or Java.
+  website_url: https://www.python.org
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev
+  detection_source: Repo Metadata
+- name: TypeScript
+  description: A superset of JavaScript that compiles to clean JavaScript output
+  website_url: http://www.typescriptlang.org
+  version: 4.6.4
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1612/bynNY5dJ.jpg
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: Ant Design
+  description: A set of high-quality React components
+  website_url: https://ant.design
+  version: 5.11.5
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: JavaScript Framework Components
+  image_url: https://img.stackshare.io/service/6112/12101536.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: Autoprefixer
+  description: PostCSS plugin to parse CSS and add vendor prefixes to CSS rules
+  website_url: https://github.com/postcss/autoprefixer
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: CSS Pre-processors / Extensions
+  image_url: https://img.stackshare.io/service/2202/72d087642cfce6fef6f2dabec5bf49e8_400x400.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: FastAPI
+  description: A high performance, easy to learn, fast to code, ready for production
+    web framework
+  website_url: https://fastapi.tiangolo.com/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Microframeworks (Backend)
+  image_url: https://img.stackshare.io/service/25014/default_f6ff39141b468e832d1bc59fc98a060df604d44d.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/pyproject.toml
+  detection_source: samples/apps/autogen-assistant/pyproject.toml
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: Node.js
+  description: A platform built on Chrome's JavaScript runtime for easily building
+    fast, scalable network applications
+  website_url: http://nodejs.org/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/1011/n1JRsFeB_400x400.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: PostCSS
+  description: Transform CSS with JS plugins
+  website_url: https://github.com/postcss/postcss
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: CSS Pre-processors / Extensions
+  image_url: https://img.stackshare.io/service/3339/rlFcjEdI.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: React
+  description: A JavaScript library for building user interfaces
+  website_url: https://reactjs.org/
+  version: 17.0.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Javascript UI Libraries
+  image_url: https://img.stackshare.io/service/1020/OYIaJ1KK.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-12-02 00:22:02.000000000 Z
+- name: React Router
+  description: A complete routing solution for React.js
+  website_url: https://github.com/rackt/react-router
+  version: 5.3.4
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: JavaScript Framework Components
+  image_url: https://img.stackshare.io/service/3350/8261421.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-12-02 00:22:02.000000000 Z
+- name: Sass
+  description: Syntactically Awesome Style Sheets
+  website_url: http://sass-lang.com/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: CSS Pre-processors / Extensions
+  image_url: https://img.stackshare.io/service/1171/jCR2zNJV.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: Tailwind CSS
+  description: A utility-first CSS framework for rapid UI development
+  website_url: https://tailwindcss.com
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Front-End Frameworks
+  image_url: https://img.stackshare.io/service/8158/default_660b7c41c3ba489cb581eec89c04655404258c19.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: Zustand
+  description: Bear necessities for state management in React
+  website_url: https://github.com/react-spring/zustand
+  version: 4.4.6
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Monitoring for Analytics
+  image_url: https://img.stackshare.io/service/11559/zustand.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: Babel
+  description: Use next generation JavaScript, today.
+  website_url: http://babeljs.io/
+  version: 7.12.9
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: JavaScript Compilers
+  image_url: https://img.stackshare.io/service/2739/-1wfGjNw.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: website/babel.config.js
+  last_updated_by: "“skzhang1”"
+  last_updated_on: 2023-08-28 01:30:54.000000000 Z
+- name: Docker
+  description: Enterprise Container Platform for High-Velocity Innovation.
+  website_url: https://www.docker.com/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Virtual Machine Platforms & Containers
+  image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev
+  detection_source: Repo Metadata
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev
+  detection_source: Repo Metadata
+- name: GitHub Actions
+  description: Automate your workflow from idea to production
+  website_url: https://github.com/features/actions
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/.github/workflows/build.yml
+  detection_source: ".github/workflows/build.yml"
+  last_updated_by: Chi Wang
+  last_updated_on: 2023-09-16 16:41:15.000000000 Z
+- name: PyPI
+  description: A repository of software for the Python programming language
+  website_url: https://pypi.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Hosted Package Repository
+  image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/setup.py
+  detection_source: setup.py
+  last_updated_by: Chi Wang (MSR)
+  last_updated_on: 2020-12-04 17:40:27.000000000 Z
+- name: Yarn
+  description: A new package manager for JavaScript
+  website_url: https://yarnpkg.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Front End Package Manager
+  image_url: https://img.stackshare.io/service/5848/44mC-kJ3.jpg
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: website/yarn.lock
+  last_updated_by: "“skzhang1”"
+  last_updated_on: 2023-08-28 01:30:54.000000000 Z
+- name: npm
+  description: The package manager for JavaScript.
+  website_url: https://www.npmjs.com/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Front End Package Manager
+  image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/package.json
+  detection_source: website/package.json
+  last_updated_by: "“skzhang1”"
+  last_updated_on: 2023-08-28 01:30:54.000000000 Z
+- name: pytest
+  description: A full-featured Python testing tool to help you write better programs
+  website_url: http://pytest.org/latest/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/4586/Lu99Qe0Z_400x400.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/tools/testbed/includes/requirements.txt
+  detection_source: samples/tools/testbed/includes/requirements.txt
+  last_updated_by: LeoLjl
+  last_updated_on: 2023-12-14 16:26:30.000000000 Z
+- name: Gatsby
+  description: Free, open source framework for building blazing fast websites and
+    apps with React
+  website_url: https://www.gatsbyjs.org
+  version: 4.14.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Application Utilities
+  sub_category: Static Site Generators
+  image_url: https://img.stackshare.io/service/5472/default_189db484e0770a6101c6a70f0ef0172bc0f8de37.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: Jupyter
+  description: Multi-language interactive computing environments.
+  website_url: http://jupyter.org
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Application Utilities
+  sub_category: Data Science Notebooks
+  image_url: https://img.stackshare.io/service/4190/fGBUdNf__400x400.jpg
+  detection_source_url: https://github.com/Huntemall/autogen-dev
+  detection_source: Repo Metadata
+- name: OpenAI
+  description: Creating safe AGI that benefits all
+  website_url: https://openai.com/
+  open_source: false
+  hosted_saas: false
+  category: Communications
+  sub_category: Large Language Models
+  image_url: https://img.stackshare.io/service/48786/default_8b1119bcbb159cebebc2f6cfc9cd2e359b169d22.jpg
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/setup.py
+  detection_source: setup.py
+  last_updated_by: Chi Wang (MSR)
+  last_updated_on: 2020-12-04 17:40:27.000000000 Z
+- name: gh-pages
+  description: Publish to a gh-pages branch on GitHub
+  package_url: https://www.npmjs.com/gh-pages
+  version: 4.0.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15967/default_732016a20524708efe7a4c77497fe9bfeea19ba6.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+  vulnerabilities:
+  - name: tschaub gh-pages vulnerable to prototype pollution
+    cve_id: CVE-2022-37611
+    cve_url: https://github.com/advisories/GHSA-8mmm-9v2q-x3f9
+    detected_date: Apr 23
+    severity: critical
+    first_patched: 5.0.0
+- name: gatsby-plugin-sharp
+  description: Wrapper of the Sharp image manipulation library for Gatsby plugins
+  package_url: https://www.npmjs.com/gatsby-plugin-sharp
+  version: 4.14.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17786/default_a53af9d6b5a4c8c6e8d5f8494d76a8d2efd3e660.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+  vulnerabilities:
+  - name: Path traversal vulnerability in gatsby-plugin-sharp
+    cve_id: CVE-2023-30548
+    cve_url: https://github.com/advisories/GHSA-h2pm-378c-pcxx
+    detected_date: Apr 21
+    severity: moderate
+    first_patched: 4.25.1
+- name: "@mdx-js/mdx"
+  description: Parse MDX and transpile to JSX
+  package_url: https://www.npmjs.com/@mdx-js/mdx
+  version: 1.6.22
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17807/default_b760b4f955878b0055c02bde0608c2f01e7d4f4f.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: "@mdx-js/react"
+  description: React implementation for MDX
+  package_url: https://www.npmjs.com/@mdx-js/react
+  version: 1.6.22
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17624/default_61a119a7701a0e8224ca0e4dce7ff951cd67972f.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-12-02 00:22:02.000000000 Z
+- name: "@svgr/webpack"
+  description: SVGR webpack loader
+  package_url: https://www.npmjs.com/@svgr/webpack
+  version: 5.5.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16411/default_aa91da3cee4d961f0eea8ca5de77f399ec7ec794.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: website/package.json
+  last_updated_by: "“skzhang1”"
+  last_updated_on: 2023-08-28 01:30:54.000000000 Z
+- name: "@tailwindcss/typography"
+  description: A Tailwind CSS plugin for automatically styling plain HTML content
+    with beautiful typographic defaults
+  package_url: https://www.npmjs.com/@tailwindcss/typography
+  version: 0.5.9
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/npm/image.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: "@types/node"
+  description: TypeScript definitions for Node.js
+  package_url: https://www.npmjs.com/@types/node
+  version: 18.11.9
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15809/default_5e5e8ac63beda29f31f1844df64d4b8247570a66.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: "@types/react"
+  description: TypeScript definitions for React
+  package_url: https://www.npmjs.com/@types/react
+  version: 18.0.25
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15894/default_1d65e37e65b7f80761374f0202776043277d505d.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-12-02 00:22:02.000000000 Z
+- name: "@types/react-dom"
+  description: TypeScript definitions for React
+  package_url: https://www.npmjs.com/@types/react-dom
+  version: 18.2.15
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15946/default_54b691c123fc8979741e800e4dcd3936c0f3b246.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-12-02 00:22:02.000000000 Z
+- name: antd
+  description: An enterprise-class UI design language and React components implementation
+  package_url: https://www.npmjs.com/antd
+  version: 5.11.5
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16201/default_b4f5b6f31c5ab1ffee4bacf20842cd41a8f2658d.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: file-loader
+  description: A file loader module for webpack
+  package_url: https://www.npmjs.com/file-loader
+  version: 6.2.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15834/default_4479dbac220be99e50e724b2df6cf415241d71fd.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: website/package.json
+  last_updated_by: Shaokun Zhang
+  last_updated_on: 2023-12-08 14:02:15.000000000 Z
+- name: gatsby-source-filesystem
+  description: Gatsby plugin which parses files within a directory for further parsing
+    by other plugins
+  package_url: https://www.npmjs.com/gatsby-source-filesystem
+  version: 4.14.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17100/default_1dbf402c11ef653fcaedc84e608a244e30ebfb87.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: gatsby-transformer-sharp
+  description: Gatsby transformer plugin for images using Sharp
+  package_url: https://www.npmjs.com/gatsby-transformer-sharp
+  version: 4.14.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/18094/image.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: jszip
+  description: Create
+  package_url: https://www.npmjs.com/jszip
+  version: 3.10.1
+  license: MIT,GPL-3.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16628/default_4b738bf1758d38dddd276589bbea47fca5a990df.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: lodash.debounce
+  description: The lodash method `_.debounce` exported as a module
+  package_url: https://www.npmjs.com/lodash.debounce
+  version: 4.0.8
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16481/default_73c88a18b684e01cbdbf945631a40a44aff5a777.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: minimatch
+  description: A glob matcher in javascript
+  package_url: https://www.npmjs.com/minimatch
+  version: 3.0.5
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16195/default_180418c6fa6cdb8f7a3500f84a8fedb884fcb3fa.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: website/package.json
+  last_updated_by: Shaokun Zhang
+  last_updated_on: 2023-12-08 14:02:15.000000000 Z
+- name: react-dom
+  description: React package for working with the DOM
+  package_url: https://www.npmjs.com/react-dom
+  version: 17.0.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15808/default_14fd11531839d935f920b6d55bd6f3528c890ad7.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-12-02 00:22:02.000000000 Z
+- name: react-markdown
+  description: Renders Markdown as React components
+  package_url: https://www.npmjs.com/react-markdown
+  version: 8.0.7
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17056/default_d17bbf7e4f3b102e29ff09c01b8165e7ba600319.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-12-02 00:22:02.000000000 Z
+- name: react-resizable
+  description: A component that is resizable with handles
+  package_url: https://www.npmjs.com/react-resizable
+  version: 3.0.5
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/18447/default_ce264c1dd64cc60a7887273861f96d765d5ebde0.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-12-02 00:22:02.000000000 Z
+- name: react-router-dom
+  description: DOM bindings for React Router
+  package_url: https://www.npmjs.com/react-router-dom
+  version: 5.3.4
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16025/default_e25d1fbb04a118c79fb444294461417342bd03bf.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-12-02 00:22:02.000000000 Z
+- name: react-syntax-highlighter
+  description: Syntax highlighting component for react with prismjs or highlightjs
+    ast using inline styles
+  package_url: https://www.npmjs.com/react-syntax-highlighter
+  version: 15.5.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17323/default_78541a280e8cac42279d6c363e71e5b8f462e962.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-12-02 00:22:02.000000000 Z
+- name: remark-gfm
+  description: Remark plugin to support GFM
+  package_url: https://www.npmjs.com/remark-gfm
+  version: 3.0.1
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/npm/image.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: tailwindcss
+  description: A utility-first CSS framework for rapidly building custom user interfaces
+  package_url: https://www.npmjs.com/tailwindcss
+  version: 3.0.24
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17398/default_2cd7ed1c123f2fca074a6f4b16c4e73d5bfe82be.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/frontend/package.json
+  detection_source: samples/apps/autogen-assistant/frontend/package.json
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: url-loader
+  description: A loader for webpack which transforms files into base64 URIs
+  package_url: https://www.npmjs.com/url-loader
+  version: 4.1.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15858/default_a2f722724df977d0f7752839e5d8845ab41f69d5.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/website/yarn.lock
+  detection_source: website/package.json
+  last_updated_by: Shaokun Zhang
+  last_updated_on: 2023-12-08 14:02:15.000000000 Z
+- name: beautifulsoup4
+  description: Screen-scraping library
+  package_url: https://pypi.org/project/beautifulsoup4
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19838/default_85689b353a3a9409328e253ea28d859d29151e0c.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/tools/testbed/includes/requirements.txt
+  detection_source: samples/tools/testbed/includes/requirements.txt
+  last_updated_by: LeoLjl
+  last_updated_on: 2023-12-14 16:26:30.000000000 Z
+- name: diskcache
+  description: Disk Cache -- Disk and file backed persistent cache
+  package_url: https://pypi.org/project/diskcache
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20549/default_cde277f9f5ddb25ccf86d553790fb97f5a8f825c.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/setup.py
+  detection_source: setup.py
+  last_updated_by: Chi Wang
+  last_updated_on: 2023-09-16 10:57:57.000000000 Z
+- name: openai
+  description: The official Python library for the openai API
+  package_url: https://pypi.org/project/openai
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/setup.py
+  detection_source: setup.py
+  last_updated_by: Chi Wang
+  last_updated_on: 2023-12-10 03:16:18.000000000 Z
+- name: pandas
+  description: Powerful data structures for data analysis
+  package_url: https://pypi.org/project/pandas
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19837/default_85689b353a3a9409328e253ea28d859d29151e0c.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/tools/testbed/includes/requirements.txt
+  detection_source: samples/tools/testbed/includes/requirements.txt
+  last_updated_by: LeoLjl
+  last_updated_on: 2023-12-14 16:26:30.000000000 Z
+- name: pydantic
+  description: Data validation and settings management using python 3.6 type hinting
+  package_url: https://pypi.org/project/pydantic
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20022/default_b0d1a54f127d7017fce41c15f5e85568fb7019ed.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/pyproject.toml
+  detection_source: samples/apps/autogen-assistant/pyproject.toml
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
+- name: python-dotenv
+  description: Add .env support to your django/flask apps in development and deployments
+  package_url: https://pypi.org/project/python-dotenv
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20095/default_3141eabecdd8efa55de73a33c43f2ac0d5bbf954.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/setup.py
+  detection_source: setup.py
+  last_updated_by: Chi Wang
+  last_updated_on: 2023-11-07 21:29:04.000000000 Z
+- name: requests
+  description: Python HTTP for Humans
+  package_url: https://pypi.org/project/requests
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19826/default_d7c684bf2673f008a9f02ac93901229297a22d7e.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/tools/testbed/includes/requirements.txt
+  detection_source: samples/tools/testbed/includes/requirements.txt
+  last_updated_by: LeoLjl
+  last_updated_on: 2023-12-14 16:26:30.000000000 Z
+- name: termcolor
+  description: ANSII Color formatting for output in terminal
+  package_url: https://pypi.org/project/termcolor
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20014/default_9e735547ab71630330a9e635a78e5cedca9ba560.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/setup.py
+  detection_source: setup.py
+  last_updated_by: Chi Wang
+  last_updated_on: 2023-09-16 10:57:57.000000000 Z
+- name: uvicorn
+  description: The lightning-fast ASGI server
+  package_url: https://pypi.org/project/uvicorn
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20431/default_f824837db22536768ec317b67275fa384fad7d47.png
+  detection_source_url: https://github.com/Huntemall/autogen-dev/blob/dev/samples/apps/autogen-assistant/pyproject.toml
+  detection_source: samples/apps/autogen-assistant/pyproject.toml
+  last_updated_by: Victor Dibia
+  last_updated_on: 2023-11-20 18:40:30.000000000 Z
