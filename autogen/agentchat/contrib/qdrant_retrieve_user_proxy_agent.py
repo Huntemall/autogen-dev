@@ -1,17 +1,22 @@
-from typing import Callable, Dict, List, Optional
+import warnings
+from typing import Callable, Dict, List, Literal, Optional
 
 from autogen.agentchat.contrib.retrieve_user_proxy_agent import RetrieveUserProxyAgent
-from autogen.retrieve_utils import get_files_from_dir, split_files_to_chunks, TEXT_FORMATS
-import logging
+from autogen.agentchat.contrib.vectordb.utils import (
+    chroma_results_to_query_results,
+    filter_results_by_distance,
+    get_logger,
+)
+from autogen.retrieve_utils import TEXT_FORMATS, get_files_from_dir, split_files_to_chunks
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 try:
+    import fastembed
     from qdrant_client import QdrantClient, models
     from qdrant_client.fastembed_common import QueryResponse
-    import fastembed
 except ImportError as e:
-    logging.fatal("Failed to import qdrant_client with fastembed. Try running 'pip install qdrant_client[fastembed]'")
+    logger.fatal("Failed to import qdrant_client with fastembed. Try running 'pip install qdrant_client[fastembed]'")
     raise e
 
 
@@ -19,7 +24,7 @@ class QdrantRetrieveUserProxyAgent(RetrieveUserProxyAgent):
     def __init__(
         self,
         name="RetrieveChatAgent",  # default set to RetrieveChatAgent
-        human_input_mode: Optional[str] = "ALWAYS",
+        human_input_mode: Literal["ALWAYS", "NEVER", "TERMINATE"] = "ALWAYS",
         is_termination_msg: Optional[Callable[[Dict], bool]] = None,
         retrieve_config: Optional[Dict] = None,  # config for the retrieve agent
         **kwargs,
@@ -29,12 +34,12 @@ class QdrantRetrieveUserProxyAgent(RetrieveUserProxyAgent):
             name (str): name of the agent.
             human_input_mode (str): whether to ask for human inputs every time a message is received.
                 Possible values are "ALWAYS", "TERMINATE", "NEVER".
-                (1) When "ALWAYS", the agent prompts for human input every time a message is received.
+                1. When "ALWAYS", the agent prompts for human input every time a message is received.
                     Under this mode, the conversation stops when the human input is "exit",
                     or when is_termination_msg is True and there is no human input.
-                (2) When "TERMINATE", the agent only prompts for human input only when a termination message is received or
+                2. When "TERMINATE", the agent only prompts for human input only when a termination message is received or
                     the number of auto reply reaches the max_consecutive_auto_reply.
-                (3) When "NEVER", the agent will never prompt for human input. Under this mode, the conversation stops
+                3. When "NEVER", the agent will never prompt for human input. Under this mode, the conversation stops
                     when the number of auto reply reaches the max_consecutive_auto_reply or when is_termination_msg is True.
             is_termination_msg (function): a function that takes a message in the form of a dictionary
                 and returns a boolean value indicating if this received message is a termination message.
@@ -47,6 +52,9 @@ class QdrantRetrieveUserProxyAgent(RetrieveUserProxyAgent):
                     will be used. If you want to use other vector db, extend this class and override the `retrieve_docs` function.
                 - docs_path (Optional, Union[str, List[str]]): the path to the docs directory. It can also be the path to a single file,
                     the url to a single file or a list of directories, files and urls. Default is None, which works only if the collection is already created.
+                - extra_docs (Optional, bool): when true, allows adding documents with unique IDs without overwriting existing ones; when false, it replaces existing documents using default IDs, risking collection overwrite.,
+                    when set to true it enables the system to assign unique IDs starting from "length+i" for new document chunks, preventing the replacement of existing documents and facilitating the addition of more content to the collection..
+                    By default, "extra_docs" is set to false, starting document IDs from zero. This poses a risk as new documents might overwrite existing ones, potentially causing unintended loss or alteration of data in the collection.
                 - collection_name (Optional, str): the name of the collection.
                     If key not provided, a default name `autogen-docs` will be used.
                 - model (Optional, str): the model to use for the retrieve chat.
@@ -72,7 +80,7 @@ class QdrantRetrieveUserProxyAgent(RetrieveUserProxyAgent):
                 - custom_text_split_function (Optional, Callable): a custom function to split a string into a list of strings.
                     Default is None, will use the default function in `autogen.retrieve_utils.split_text_to_chunks`.
                 - custom_text_types (Optional, List[str]): a list of file types to be processed. Default is `autogen.retrieve_utils.TEXT_FORMATS`.
-                    This only applies to files under the directories in `docs_path`. Explictly included files and urls will be chunked regardless of their types.
+                    This only applies to files under the directories in `docs_path`. Explicitly included files and urls will be chunked regardless of their types.
                 - recursive (Optional, bool): whether to search documents recursively in the docs_path. Default is True.
                 - parallel (Optional, int): How many parallel workers to use for embedding. Defaults to the number of CPU cores.
                 - on_disk (Optional, bool): Whether to store the collection on disk. Default is False.
@@ -86,6 +94,11 @@ class QdrantRetrieveUserProxyAgent(RetrieveUserProxyAgent):
              **kwargs (dict): other kwargs in [UserProxyAgent](../user_proxy_agent#__init__).
 
         """
+        warnings.warn(
+            "The QdrantRetrieveUserProxyAgent is deprecated. Please use the RetrieveUserProxyAgent instead, set `vector_db` to `qdrant`.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         super().__init__(name, human_input_mode, is_termination_msg, retrieve_config, **kwargs)
         self._client = self._retrieve_config.get("client", QdrantClient(":memory:"))
         self._embedding_model = self._retrieve_config.get("embedding_model", "BAAI/bge-small-en-v1.5")
@@ -116,6 +129,7 @@ class QdrantRetrieveUserProxyAgent(RetrieveUserProxyAgent):
                 custom_text_split_function=self.custom_text_split_function,
                 custom_text_types=self._custom_text_types,
                 recursive=self._recursive,
+                extra_docs=self._extra_docs,
                 parallel=self._parallel,
                 on_disk=self._on_disk,
                 quantization_config=self._quantization_config,
@@ -132,6 +146,11 @@ class QdrantRetrieveUserProxyAgent(RetrieveUserProxyAgent):
             collection_name=self._collection_name,
             embedding_model=self._embedding_model,
         )
+        results["contents"] = results.pop("documents")
+        results = chroma_results_to_query_results(results, "distances")
+        results = filter_results_by_distance(results, self._distance_threshold)
+
+        self._search_string = search_string
         self._results = results
 
 
@@ -146,6 +165,7 @@ def create_qdrant_from_dir(
     custom_text_split_function: Callable = None,
     custom_text_types: List[str] = TEXT_FORMATS,
     recursive: bool = True,
+    extra_docs: bool = False,
     parallel: int = 0,
     on_disk: bool = False,
     quantization_config: Optional[models.QuantizationConfig] = None,
@@ -169,6 +189,7 @@ def create_qdrant_from_dir(
             Default is None, will use the default function in `autogen.retrieve_utils.split_text_to_chunks`.
         custom_text_types (Optional, List[str]): a list of file types to be processed. Default is TEXT_FORMATS.
         recursive (Optional, bool): whether to search documents recursively in the dir_path. Default is True.
+        extra_docs (Optional, bool): whether to add more documents in the collection. Default is False
         parallel (Optional, int): How many parallel workers to use for embedding. Defaults to the number of CPU cores
         on_disk (Optional, bool): Whether to store the collection on disk. Default is False.
         quantization_config: Quantization configuration. If None, quantization will be disabled.
@@ -184,19 +205,20 @@ def create_qdrant_from_dir(
         client.set_model(embedding_model)
 
     if custom_text_split_function is not None:
-        chunks = split_files_to_chunks(
+        chunks, sources = split_files_to_chunks(
             get_files_from_dir(dir_path, custom_text_types, recursive),
             custom_text_split_function=custom_text_split_function,
         )
     else:
-        chunks = split_files_to_chunks(
+        chunks, sources = split_files_to_chunks(
             get_files_from_dir(dir_path, custom_text_types, recursive), max_tokens, chunk_mode, must_break_at_empty_line
         )
     logger.info(f"Found {len(chunks)} chunks.")
 
+    collection = None
     # Check if collection by same name exists, if not, create it with custom options
     try:
-        client.get_collection(collection_name=collection_name)
+        collection = client.get_collection(collection_name=collection_name)
     except Exception:
         client.create_collection(
             collection_name=collection_name,
@@ -204,12 +226,21 @@ def create_qdrant_from_dir(
                 on_disk=on_disk, quantization_config=quantization_config, hnsw_config=hnsw_config
             ),
         )
-        client.get_collection(collection_name=collection_name)
+        collection = client.get_collection(collection_name=collection_name)
+
+    length = 0
+    if extra_docs:
+        length = len(collection.get()["ids"])
 
     # Upsert in batch of 100 or less if the total number of chunks is less than 100
     for i in range(0, len(chunks), min(100, len(chunks))):
         end_idx = i + min(100, len(chunks) - i)
-        client.add(collection_name, documents=chunks[i:end_idx], ids=[j for j in range(i, end_idx)], parallel=parallel)
+        client.add(
+            collection_name,
+            documents=chunks[i:end_idx],
+            ids=[(j + length) for j in range(i, end_idx)],
+            parallel=parallel,
+        )
 
     # Create a payload index for the document field
     # Enables highly efficient payload filtering. Reference: https://qdrant.tech/documentation/concepts/indexing/#indexing
@@ -265,20 +296,24 @@ def query_qdrant(
         collection_name,
         query_texts,
         limit=n_results,
-        query_filter=models.Filter(
-            must=[
-                models.FieldCondition(
-                    key="document",
-                    match=models.MatchText(text=search_string),
-                )
-            ]
-        )
-        if search_string
-        else None,
+        query_filter=(
+            models.Filter(
+                must=[
+                    models.FieldCondition(
+                        key="document",
+                        match=models.MatchText(text=search_string),
+                    )
+                ]
+            )
+            if search_string
+            else None
+        ),
     )
 
     data = {
         "ids": [[result.id for result in sublist] for sublist in results],
         "documents": [[result.document for result in sublist] for sublist in results],
+        "distances": [[result.score for result in sublist] for sublist in results],
+        "metadatas": [[result.metadata for result in sublist] for sublist in results],
     }
     return data

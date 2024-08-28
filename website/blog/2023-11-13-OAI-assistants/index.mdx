@@ -8,7 +8,7 @@ tags: [openai-assistant]
 <p align="center"><em>AutoGen enables collaboration among multiple ChatGPTs for complex tasks.</em></p>
 
 
-## TLDR
+## TL;DR
 OpenAI assistants are now integrated into AutoGen via [`GPTAssistantAgent`](https://github.com/microsoft/autogen/blob/main/autogen/agentchat/contrib/gpt_assistant_agent.py).
 This enables multiple OpenAI assistants, which form the backend of the now popular GPTs, to collaborate and tackle complex tasks.
 Checkout example notebooks for reference:
@@ -67,7 +67,7 @@ user_proxy = UserProxyAgent(name="user_proxy",
 user_proxy.initiate_chat(gpt_assistant, message="Print hello world")
 ```
 
-`GPTAssistantAgent` supports both creating new OpenAI assistants or reusing existsing assistants
+`GPTAssistantAgent` supports both creating new OpenAI assistants or reusing existing assistants
 (e.g, by providing an `assistant_id`).
 
 
@@ -112,6 +112,6 @@ Checkout more examples [here](https://github.com/microsoft/autogen/tree/main/not
 `GPTAssistantAgent` was made possible through collaboration with
 [@IANTHEREAL](https://github.com/IANTHEREAL),
 [Jiale Liu](https://leoljl.github.io),
-[Yiran Wu](https://github.com/kevin666aa),
+[Yiran Wu](https://github.com/yiranwu0),
 [Qingyun Wu](https://qingyun-wu.github.io/),
 [Chi Wang](https://www.microsoft.com/en-us/research/people/chiw/), and many other AutoGen maintainers.

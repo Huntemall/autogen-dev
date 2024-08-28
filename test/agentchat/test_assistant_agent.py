@@ -1,8 +1,15 @@
+#!/usr/bin/env python3 -m pytest
+
 import os
 import sys
+
 import pytest
+
 import autogen
 from autogen.agentchat import AssistantAgent, UserProxyAgent
+
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from conftest import reason, skip_openai  # noqa: E402
 
 KEY_LOC = "notebook"
 OAI_CONFIG_LIST = "OAI_CONFIG_LIST"
@@ -10,21 +17,17 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 
 @pytest.mark.skipif(
-    sys.platform in ["darwin", "win32"],
-    reason="do not run on MacOS or windows",
+    sys.platform in ["darwin", "win32"] or skip_openai,
+    reason="do not run on MacOS or windows OR " + reason,
 )
 def test_ai_user_proxy_agent():
-    try:
-        import openai
-    except ImportError:
-        return
-
     conversations = {}
     # autogen.ChatCompletion.start_logging(conversations)
 
     config_list = autogen.config_list_from_json(
         OAI_CONFIG_LIST,
         file_location=KEY_LOC,
+        filter_dict={"tags": ["gpt-3.5-turbo"]},
     )
     assistant = AssistantAgent(
         "assistant",
@@ -50,32 +53,20 @@ def test_ai_user_proxy_agent():
     assistant.reset()
 
     math_problem = "$x^3=125$. What is x?"
-    ai_user_proxy.initiate_chat(
+    res = ai_user_proxy.initiate_chat(
         assistant,
         message=math_problem,
     )
     print(conversations)
+    print("Result summary:", res.summary)
 
 
+@pytest.mark.skipif(skip_openai, reason=reason)
 def test_gpt35(human_input_mode="NEVER", max_consecutive_auto_reply=5):
-    try:
-        import openai
-    except ImportError:
-        return
     config_list = autogen.config_list_from_json(
         OAI_CONFIG_LIST,
         file_location=KEY_LOC,
-        filter_dict={
-            "model": {
-                "gpt-3.5-turbo",
-                "gpt-3.5-turbo-16k",
-                "gpt-3.5-turbo-16k-0613",
-                "gpt-3.5-turbo-0301",
-                "chatgpt-35-turbo-0301",
-                "gpt-35-turbo-v0301",
-                "gpt",
-            },
-        },
+        filter_dict={"tags": ["gpt-3.5-turbo", "gpt-3.5-turbo-16k"]},
     )
     llm_config = {
         "cache_seed": 42,
@@ -114,13 +105,13 @@ If "Thank you" or "You\'re welcome" are said in the conversation, then say TERMI
     assert not isinstance(user.use_docker, bool)  # None or str
 
 
-def test_create_execute_script(human_input_mode="NEVER", max_consecutive_auto_reply=10):
-    try:
-        import openai
-    except ImportError:
-        return
-
-    config_list = autogen.config_list_from_json(OAI_CONFIG_LIST, file_location=KEY_LOC)
+@pytest.mark.skipif(skip_openai, reason=reason)
+def test_create_execute_script(human_input_mode="NEVER", max_consecutive_auto_reply=3):
+    config_list = autogen.config_list_from_json(
+        OAI_CONFIG_LIST,
+        file_location=KEY_LOC,
+        filter_dict={"tags": ["gpt-3.5-turbo"]},
+    )
     conversations = {}
     # autogen.ChatCompletion.start_logging(conversations)
     llm_config = {
@@ -143,7 +134,14 @@ def test_create_execute_script(human_input_mode="NEVER", max_consecutive_auto_re
         message="""Create and execute a script to plot a rocket without using matplotlib""",
     )
     assistant.reset()
-    user.initiate_chat(
+    user = UserProxyAgent(
+        "user",
+        human_input_mode=human_input_mode,
+        code_execution_config={"work_dir": f"{here}/test_agent_scripts"},
+        max_consecutive_auto_reply=max_consecutive_auto_reply,
+        is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"),
+    )
+    res = user.initiate_chat(
         assistant,
         message="""Create a temp.py file with the following content:
 ```
@@ -151,6 +149,7 @@ print('Hello world!')
 ```""",
     )
     print(conversations)
+    print("Result summary:", res.summary)
     # autogen.ChatCompletion.print_usage_summary()
     # autogen.ChatCompletion.start_logging(compact=False)
     user.send("""Execute temp.py""", assistant)
@@ -159,17 +158,13 @@ print('Hello world!')
     # autogen.ChatCompletion.stop_logging()
 
 
-def test_tsp(human_input_mode="NEVER", max_consecutive_auto_reply=10):
-    try:
-        import openai
-    except ImportError:
-        return
-
+@pytest.mark.skipif(skip_openai, reason=reason)
+def test_tsp(human_input_mode="NEVER", max_consecutive_auto_reply=2):
     config_list = autogen.config_list_from_json(
         OAI_CONFIG_LIST,
         file_location=KEY_LOC,
         filter_dict={
-            "model": ["gpt-4", "gpt4", "gpt-4-32k", "gpt-4-32k-0314", "gpt-4-32k-v0314"],
+            "tags": ["gpt-4", "gpt-4-32k"],
         },
     )
     hard_questions = [
@@ -178,26 +173,30 @@ def test_tsp(human_input_mode="NEVER", max_consecutive_auto_reply=10):
         "Can we add a new point to the graph? It's distance should be randomly between 0 - 5 to each of the existing points.",
     ]
 
-    class TSPUserProxyAgent(UserProxyAgent):
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            with open(f"{here}/tsp_prompt.txt", "r") as f:
-                self._prompt = f.read()
-
-        def generate_init_message(self, question) -> str:
-            return self._prompt.format(question=question)
+    def tsp_message(sender, recipient, context):
+        filename = context.get("prompt_filename", "")
+        with open(filename, "r") as f:
+            prompt = f.read()
+        question = context.get("question", "")
+        return prompt.format(question=question)
 
     # autogen.ChatCompletion.start_logging()
     assistant = AssistantAgent("assistant", llm_config={"temperature": 0, "config_list": config_list})
-    user = TSPUserProxyAgent(
+    user = UserProxyAgent(
         "user",
-        code_execution_config={"work_dir": here},
+        code_execution_config={
+            "work_dir": here,
+        },
         human_input_mode=human_input_mode,
         max_consecutive_auto_reply=max_consecutive_auto_reply,
     )
-    user.initiate_chat(assistant, question=hard_questions[2])
+    chat_res = user.initiate_chat(
+        assistant, message=tsp_message, question=hard_questions[2], prompt_filename=f"{here}/tsp_prompt.txt"
+    )
     # print(autogen.ChatCompletion.logged_history)
     # autogen.ChatCompletion.stop_logging()
+    # print(chat_res.summary)
+    print(chat_res.cost)
 
 
 if __name__ == "__main__":
@@ -206,4 +205,5 @@ if __name__ == "__main__":
     # when GPT-4, i.e., the DEFAULT_MODEL, is used, conversation in the following test
     # should terminate in 2-3 rounds of interactions (because is_termination_msg should be true after 2-3 rounds)
     # although the max_consecutive_auto_reply is set to 10.
-    test_tsp(human_input_mode="NEVER", max_consecutive_auto_reply=10)
+    test_tsp(human_input_mode="NEVER", max_consecutive_auto_reply=2)
+    # test_ai_user_proxy_agent()

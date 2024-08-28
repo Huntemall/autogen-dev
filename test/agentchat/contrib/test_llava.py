@@ -1,19 +1,18 @@
+#!/usr/bin/env python3 -m pytest
+
 import unittest
 from unittest.mock import MagicMock, patch
 
 import pytest
+from conftest import MOCK_OPEN_AI_API_KEY
 
 import autogen
 
 try:
-    from autogen.agentchat.contrib.llava_agent import (
-        LLaVAAgent,
-        _llava_call_binary_with_config,
-        llava_call,
-        llava_call_binary,
-    )
+    from autogen.agentchat.contrib.llava_agent import LLaVAAgent, _llava_call_binary_with_config, llava_call
 except ImportError:
     skip = True
+
 else:
     skip = False
 
@@ -26,7 +25,7 @@ class TestLLaVAAgent(unittest.TestCase):
             llm_config={
                 "timeout": 600,
                 "seed": 42,
-                "config_list": [{"model": "llava-fake", "base_url": "localhost:8000", "api_key": "Fake"}],
+                "config_list": [{"model": "llava-fake", "base_url": "localhost:8000", "api_key": MOCK_OPEN_AI_API_KEY}],
             },
         )
 
@@ -94,16 +93,16 @@ class TestLLavaCallBinaryWithConfig(unittest.TestCase):
 
 @pytest.mark.skipif(skip, reason="dependency is not installed")
 class TestLLavaCall(unittest.TestCase):
-    @patch("autogen.agentchat.contrib.llava_agent.llava_formater")
+    @patch("autogen.agentchat.contrib.llava_agent.llava_formatter")
     @patch("autogen.agentchat.contrib.llava_agent.llava_call_binary")
-    def test_llava_call(self, mock_llava_call_binary, mock_llava_formater):
+    def test_llava_call(self, mock_llava_call_binary, mock_llava_formatter):
         # Set up the mocks
-        mock_llava_formater.return_value = ("formatted prompt", ["image1", "image2"])
+        mock_llava_formatter.return_value = ("formatted prompt", ["image1", "image2"])
         mock_llava_call_binary.return_value = "Generated Text"
 
         # Set up the llm_config dictionary
         llm_config = {
-            "config_list": [{"api_key": "value", "base_url": "localhost:8000"}],
+            "config_list": [{"api_key": MOCK_OPEN_AI_API_KEY, "base_url": "localhost:8000"}],
             "max_new_tokens": 2000,
             "temperature": 0.5,
             "seed": 1,
@@ -113,7 +112,7 @@ class TestLLavaCall(unittest.TestCase):
         result = llava_call("Test Prompt", llm_config)
 
         # Check the results
-        mock_llava_formater.assert_called_once_with("Test Prompt", order_image_tokens=False)
+        mock_llava_formatter.assert_called_once_with("Test Prompt", order_image_tokens=False)
         mock_llava_call_binary.assert_called_once_with(
             "formatted prompt",
             ["image1", "image2"],

@@ -1,5 +1,7 @@
 from typing import Callable, Dict, Literal, Optional, Union
 
+from autogen.runtime_logging import log_new_agent, logging_enabled
+
 from .conversable_agent import ConversableAgent
 
 
@@ -36,8 +38,7 @@ Reply "TERMINATE" in the end when everything is done.
         llm_config: Optional[Union[Dict, Literal[False]]] = None,
         is_termination_msg: Optional[Callable[[Dict], bool]] = None,
         max_consecutive_auto_reply: Optional[int] = None,
-        human_input_mode: Optional[str] = "NEVER",
-        code_execution_config: Optional[Union[Dict, Literal[False]]] = False,
+        human_input_mode: Literal["ALWAYS", "NEVER", "TERMINATE"] = "NEVER",
         description: Optional[str] = None,
         **kwargs,
     ):
@@ -46,7 +47,7 @@ Reply "TERMINATE" in the end when everything is done.
             name (str): agent name.
             system_message (str): system message for the ChatCompletion inference.
                 Please override this attribute if you want to reprogram the agent.
-            llm_config (dict): llm inference configuration.
+            llm_config (dict or False or None): llm inference configuration.
                 Please refer to [OpenAIWrapper.create](/docs/reference/oai/client#create)
                 for available options.
             is_termination_msg (function): a function that takes a message in the form of a dictionary
@@ -64,13 +65,14 @@ Reply "TERMINATE" in the end when everything is done.
             is_termination_msg,
             max_consecutive_auto_reply,
             human_input_mode,
-            code_execution_config=code_execution_config,
             llm_config=llm_config,
             description=description,
             **kwargs,
         )
+        if logging_enabled():
+            log_new_agent(self, locals())
 
-        # Update the provided desciption if None, and we are using the default system_message,
+        # Update the provided description if None, and we are using the default system_message,
         # then use the default description.
         if description is None:
             if system_message == self.DEFAULT_SYSTEM_MESSAGE:
